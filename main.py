@@ -1,3 +1,4 @@
+import random
 import ursina as ur
 from ursina.prefabs.first_person_controller import FirstPersonController
 
@@ -9,7 +10,7 @@ class Voxel(ur.Button):
                 model = 'cube',
                 origin_y = 0.5,
                 texture = 'white_cube',
-                color = ur.color.white,
+                color = ur.color.color(0,0,random.uniform(0.9,1)), # color default is HSV format
                 highlight_color = ur.color.lime)
     
     def input(self, key):
@@ -23,8 +24,8 @@ class Voxel(ur.Button):
 
 app = ur.Ursina()
 
-for z in range(8):
-    for x in range(8):
+for z in range(20):
+    for x in range(20):
         voxel = Voxel( position = (x, 0, z) )
 player = FirstPersonController()
 
