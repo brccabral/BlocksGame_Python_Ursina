@@ -9,6 +9,7 @@ stone_texture = ur.load_texture('assets/stone_block.png')
 brick_texture = ur.load_texture('assets/brick_block.png')
 dirt_texture = ur.load_texture('assets/dirt_block.png')
 sky_texture = ur.load_texture('assets/skybox.png')
+arm_texture = ur.load_texture('assets/arm_texture.png')
 
 block_pick = 1
 
@@ -56,12 +57,23 @@ class Sky(ur.Entity):
             scale = 150,
             double_sided = True
         )
-        
+
+class Hand(ur.Entity):
+    def __init__(self):
+        super().__init__(
+            parent = ur.camera.ui,
+            model = 'assets/arm',
+            texture = arm_texture,
+            scale = 0.2,
+            rotation = ur.Vec3(150, -10, 0),
+            position = ur.Vec2(0.4, -0.6)
+        )
 
 for z in range(20):
     for x in range(20):
         voxel = Voxel( position = (x, 0, z) )
 player = FirstPersonController()
 sky = Sky()
+hand = Hand()
 
 app.run()
