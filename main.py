@@ -2,16 +2,23 @@ import random
 import ursina as ur
 from ursina.prefabs.first_person_controller import FirstPersonController
 
+app = ur.Ursina()
+
+grass_texture = ur.load_texture('assets/grass_block.png')
+stone_texture = ur.load_texture('assets/stone_block.png')
+brick_texture = ur.load_texture('assets/brick_block.png')
+dirt_texture = ur.load_texture('assets/dirt_block.png')
+
 class Voxel(ur.Button):
     def __init__(self, position = (0,0,0)):
         super().__init__(
                 parent = ur.scene,
                 position = position,
-                model = 'cube',
+                model = 'assets/block',
                 origin_y = 0.5,
-                texture = 'white_cube',
+                texture = grass_texture,
                 color = ur.color.color(0,0,random.uniform(0.9,1)), # color default is HSV format
-                highlight_color = ur.color.lime)
+                scale = 0.5)
     
     def input(self, key):
         if self.hovered:
@@ -22,7 +29,6 @@ class Voxel(ur.Button):
             if key == 'right mouse down':
                 ur.destroy(self)
 
-app = ur.Ursina()
 
 for z in range(20):
     for x in range(20):
