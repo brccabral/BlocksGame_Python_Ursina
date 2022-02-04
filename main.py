@@ -10,6 +10,7 @@ brick_texture = ur.load_texture('assets/brick_block.png')
 dirt_texture = ur.load_texture('assets/dirt_block.png')
 sky_texture = ur.load_texture('assets/skybox.png')
 arm_texture = ur.load_texture('assets/arm_texture.png')
+punch_sound = ur.Audio('assets/punch_sound', loop = False, autoplay = False)
 
 block_pick = 1
 
@@ -49,9 +50,11 @@ class Voxel(ur.Button):
                 voxel = Voxel(
                             position = (self.position + ur.mouse.normal),
                             texture = texture)
+                punch_sound.play()
             
             if key == 'right mouse down':
                 ur.destroy(self)
+                punch_sound.play()
 
 class Sky(ur.Entity):
     def __init__(self):
