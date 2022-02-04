@@ -22,6 +22,11 @@ def update():
     if ur.held_keys['3']: block_pick = 3
     if ur.held_keys['4']: block_pick = 4
 
+    if ur.held_keys['left mouse'] or ur.held_keys['right mouse']:
+        hand.active_state()
+    else:
+        hand.passive_state()
+
 class Voxel(ur.Button):
     def __init__(self, position = (0,0,0), texture = grass_texture):
         super().__init__(
@@ -68,10 +73,17 @@ class Hand(ur.Entity):
             rotation = ur.Vec3(150, -10, 0),
             position = ur.Vec2(0.4, -0.6)
         )
+    
+    def active_state(self):
+        self.position =  ur.Vec2(0.3, -0.5)
+    
+    def passive_state(self):
+        self.position =  ur.Vec2(0.4, -0.6)
 
 for z in range(20):
     for x in range(20):
         voxel = Voxel( position = (x, 0, z) )
+
 player = FirstPersonController()
 sky = Sky()
 hand = Hand()
