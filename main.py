@@ -12,6 +12,9 @@ sky_texture = ur.load_texture('assets/skybox.png')
 arm_texture = ur.load_texture('assets/arm_texture.png')
 punch_sound = ur.Audio('assets/punch_sound', loop = False, autoplay = False)
 
+ur.window.fps_counter.enabled = False
+ur.window.exit_button.visible = False
+
 block_pick = 1
 
 def update():
